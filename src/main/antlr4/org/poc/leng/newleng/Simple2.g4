@@ -11,7 +11,7 @@ body: (assign
     
 
 assign : VARID ASSIGN expr                                          ; 
-if_block: IF cond THEN block (ELIF cond THEN block)* (ELSE block)?  ;
+if_block: IF cond THEN block (ELIF cond THEN block)* (ELSE THEN block)?  ;
 write_block: WRITE LPAR VARID RPAR                                  ;
 read_block: READ LPAR VARID RPAR                                    ;
 declaration: var_type VARID | var_type assign ;
