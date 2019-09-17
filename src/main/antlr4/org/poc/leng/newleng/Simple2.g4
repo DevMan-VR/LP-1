@@ -12,14 +12,14 @@ body: (assign
     | while_block);                                                   
     
 
-while_block : LPAR cond RPAR LCOR block RCOR; 
+while_block : LPAR cond RPAR LCOR body_block RCOR; 
 assign : VARID ASSIGN expr                                          ; 
-if_block: IF cond THEN block (ELIF cond THEN block)* (ELSE THEN block)?  ;
+if_block: IF cond THEN body_block (ELIF cond THEN body_block)* (ELSE THEN body_block)?  ;
 write_block: WRITE LPAR VARID RPAR                                  ;
 read_block: READ LPAR VARID RPAR                                    ;
 declaration: var_type VARID | var_type assign ;
 var_type: (FLOAT | INT | BOOLEAN | STRING | VARID  );
-block: body*  ;
+body_block: body*  ;
 cond: expr ;
 expr : (expr_nat | expr_real | expr_string)                         ;
 expr_real : LPAR expr_real op expr_real RPAR | FLOAT                ;
