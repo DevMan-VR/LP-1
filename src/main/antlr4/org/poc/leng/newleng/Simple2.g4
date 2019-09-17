@@ -2,14 +2,17 @@ grammar Simple2;
 
 program : start_block body+ end_block                               ;
 
+
 start_block: INIT                                                   ;
 end_block: END                                                      ;
 body: (assign                                                       
     | if_block                                                      
     | read_block                                                    
-    | write_block);                                                   
+    | write_block
+    | while_block);                                                   
     
 
+while_block : LPAR cond RPAR LCOR block RCOR; 
 assign : VARID ASSIGN expr                                          ; 
 if_block: IF cond THEN block (ELIF cond THEN block)* (ELSE THEN block)?  ;
 write_block: WRITE LPAR VARID RPAR                                  ;
@@ -53,6 +56,9 @@ END : ';;';
 
 LPAR: '(';
 RPAR: ')';
+
+LCOR: '{';
+RCOR: '}';
 
 PLUS : '+';
 MINUS : '-';
